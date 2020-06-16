@@ -46,11 +46,11 @@ namespace Kolokwium.Controllers
                     while (dr.Read())
                     {
                         TaskModel model = new TaskModel();
-                        model.IdTask = dr["t.IdTask"].ToString();
-                        model.Name = dr["t.Name"].ToString();
-                        model.Description = dr["t.Description"].ToString();
-                        model.IdCreator = dr["t.IdCreator"].ToString();
-                        model.IdTeam = dr["t.IdTeam"].ToString();
+                        model.IdTask = dr["IdTask"].ToString();
+                        model.Name = dr["Name"].ToString();
+                        model.Description = dr["Description"].ToString();
+                        model.IdCreator = dr["IdCreator"].ToString();
+                        model.IdTeam = dr["IdProject"].ToString();
                         model.czyJestKreatorem = "Nie jest kreatorem";
 
                         if (model.IdCreator == model.IdTeam)
@@ -75,10 +75,8 @@ namespace Kolokwium.Controllers
 
         [Route("api/tasks")]
         [HttpPut("{id}")]
-        public IActionResult updateTask([FromRoute] string id,TaskRequest request)
+        public IActionResult updateTask([FromRoute] string id, TaskRequest request)
         {
-           
-
             using (var connection = new SqlConnection(ConfString))
             using (var command = new SqlCommand())
             {
@@ -104,11 +102,11 @@ namespace Kolokwium.Controllers
 
                     TaskTypeModel p = request.TaskType;
                     string taskid = p.IdTaskType;
-                    command.CommandText = "Select * From TaskType Where IdTaskType ="+taskid;
+                    command.CommandText = "Select * From TaskType Where IdTaskType =" + taskid;
 
                     if (!dr.Read())
                     {
-                        command.CommandText = "Insert INTO TaskType (idTaskType, Name) Values (" + Int32.Parse(p.IdTaskType) + ", '"+p.Name+",)";
+                        command.CommandText = "Insert INTO TaskType (idTaskType, Name) Values (" + Int32.Parse(p.IdTaskType) + ", '" + p.Name + ",)";
                     }
 
 
@@ -132,19 +130,13 @@ namespace Kolokwium.Controllers
                 {
                     //tworzenie
                 }
-                
-                
-
-
-
-
-
 
                 return null;
+            }
+
+
+
         }
-
-
-
     }
 
 
