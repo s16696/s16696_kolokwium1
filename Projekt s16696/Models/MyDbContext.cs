@@ -44,7 +44,7 @@ namespace Projekt_s16696.Models
                 opt.Property(p => p.Street).IsRequired();
                 opt.Property(p => p.City).IsRequired();
                 opt.Property(p => p.Height).HasColumnType("decimal(6,2)");
-                opt.Ignore(p => p.Campaings);
+                opt.Ignore(p => p.Campaigns); 
             });
 
 
@@ -63,14 +63,17 @@ namespace Projekt_s16696.Models
 
 
                 opt.HasOne(p => p.Building_1)
-                .WithMany(p => p.FromIdBuild).HasForeignKey(p => p.FromIdBuilding);
+                .WithMany(p => p.FromIdBuildC).HasForeignKey(p => p.FromIdBuilding)
+                .OnDelete(DeleteBehavior.NoAction);
 
                 opt.HasOne(p => p.Building_2)
-                .WithMany(p => p.ToIdBuild).HasForeignKey(p => p.ToIdBuilding);
+                .WithMany(p => p.ToIdBuildC).HasForeignKey(p => p.ToIdBuilding)
+                .OnDelete(DeleteBehavior.NoAction);
 
                 opt.HasMany(p => p.Banners)
                     .WithOne(p => p.Campaign)
-                    .HasForeignKey(p => p.IdCampaign);
+                    .HasForeignKey(p => p.IdCampaign)
+                    .OnDelete(DeleteBehavior.NoAction);
 
             });
 

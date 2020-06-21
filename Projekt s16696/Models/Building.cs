@@ -17,11 +17,11 @@ namespace Projekt_s16696.Models
 
         public decimal Height { get; set; }
 
-        public virtual ICollection<Campaign> Campaings { get; set; }
+        public virtual ICollection<Campaign> Campaigns { get; set; }
 
-        public virtual ICollection<Campaign> FromIdBuild { get; set; }
+        public virtual ICollection<Campaign> FromIdBuildC { get; set; }
 
-        public virtual ICollection<Campaign> ToIdBuild { get; set; }
+        public virtual ICollection<Campaign> ToIdBuildC { get; set; }
 
     }
 }

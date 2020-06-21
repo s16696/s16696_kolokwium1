@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Projekt_s16696.Models
 {
-    public class Campaign
+    public class Campaign 
     {
         public int IdCampaign { get; set; }
 

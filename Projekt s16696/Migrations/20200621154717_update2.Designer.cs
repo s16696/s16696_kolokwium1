@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Projekt_s16696.Models;
 
 namespace Projekt_s16696.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200621154717_update2")]
+    partial class update2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -146,16 +148,16 @@ namespace Projekt_s16696.Migrations
                     b.HasOne("Projekt_s16696.Models.Campaign", "Campaign")
                         .WithMany("Banners")
                         .HasForeignKey("IdCampaign")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
             modelBuilder.Entity("Projekt_s16696.Models.Campaign", b =>
                 {
                     b.HasOne("Projekt_s16696.Models.Building", "Building_1")
-                        .WithMany("FromIdBuildC")
+                        .WithMany("FromIdBuild")
                         .HasForeignKey("FromIdBuilding")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Projekt_s16696.Models.Client", "Client")
@@ -165,9 +167,9 @@ namespace Projekt_s16696.Migrations
                         .IsRequired();
 
                     b.HasOne("Projekt_s16696.Models.Building", "Building_2")
-                        .WithMany("ToIdBuildC")
+                        .WithMany("ToIdBuild")
                         .HasForeignKey("ToIdBuilding")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 #pragma warning restore 612, 618
