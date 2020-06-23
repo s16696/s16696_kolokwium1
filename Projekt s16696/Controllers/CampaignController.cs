@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Moq;
 using Projekt_s16696.DTOs;
 using Projekt_s16696.Models;
 using Projekt_s16696.Services;
@@ -17,13 +18,17 @@ namespace Projekt_s16696.Controllers
         private ICampaingsDBService _service;
         private MyDbContext _context;
 
+
         public CampaignController(ICampaingsDBService service, MyDbContext context)
         {
             _service = service;
             _context = context;
         }
 
-
+        public CampaignController(Mock<ICampaingsDBService> db)
+        {
+            this._service = (ICampaingsDBService)db;
+        }
 
         [HttpPost("registerCampaign")]
         [Authorize(Roles = "registered")]

@@ -13,9 +13,7 @@ namespace Projekt_s16696.Services
         IActionResult RegisterCampaign(MyDbContext context,
             RegCampaignRequest request);
 
-        IActionResult ListCampaigns(MyDbContext context);
-
-
-       
+        public IActionResult ListCampaigns(MyDbContext context);
+        void ListCampaigns();
     }
 }
